@@ -9,13 +9,11 @@
 </head>
 <body>
 <div class="container text-left">
-
-
     <h1 class="text-center">Book List:</h1>
-    <form th:method="POST" action="@{/books/search}">
+    <form th:method="POST" th:action="@{/books/search}">
         <div class="mb-3">
-            <label for="searchRequest" class="form-label">Search:</label>
-            <input type="text" class="form-control" id="searchRequest" name="searchQuery">
+            <label for="searchQuery" class="form-label">Search:</label>
+            <input type="text" class="form-control" id="searchQuery" name="searchQuery">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>

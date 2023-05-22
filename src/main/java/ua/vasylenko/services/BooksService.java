@@ -74,8 +74,8 @@ public class BooksService {
         booksRepository.save(book);
     }
 
-    public Object findByNameStartingWith(String search) {
-        return booksRepository.findByNameStartingWith(search);
+    public List<Book> findByNameContainingIgnoreCase(String search) {
+        return booksRepository.findByNameContainingIgnoreCase(search);
     }
 }
 

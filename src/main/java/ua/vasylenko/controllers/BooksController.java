@@ -36,7 +36,8 @@ public class BooksController {
     public String bookList(Model model, @RequestParam(value = "page") Optional<Integer> pageNumber,
                            @RequestParam(value = "books_per_page", defaultValue = "5") Integer pageSize,
                            @RequestParam(value = "sort_by", defaultValue = "name") Optional<String> sort) {
-
+            if (pageNumber.isEmpty())
+                return "redirect: /books?page=0&books_per_page=5";
             Page page = booksService.findAll(pageNumber.get(), pageSize, sort.get());
             List<Book> bookList = page.getContent();
             model.addAttribute("bookList", bookList);
@@ -54,7 +55,7 @@ public class BooksController {
 
     @PostMapping("/search")
     public String searchResult(Model model, @RequestParam("searchQuery") String query) {
-        model.addAttribute("result", booksService.findByNameStartingWith(query));
+        model.addAttribute("bookList", booksService.findByNameContainingIgnoreCase(query));
         return "books/search";
     }
 
@@ -65,7 +66,7 @@ public class BooksController {
         if (bindingResult.hasErrors())
             return "books/newBook";
         booksService.addNewBook(book);
-        return "redirect:/books?page=0&books_per_page=5&sort_by=name";
+        return "redirect:/books?page=0&books_per_page=5";
     }
 
     @GetMapping("/new")
@@ -98,7 +99,7 @@ public class BooksController {
     @DeleteMapping("/{id}/delete")
     public String deleteBook(@PathVariable("id") int id) {
         booksService.deleteBook(id);
-        return "redirect:/books?page=0&books_per_page=5&sort_by=name";
+        return "redirect:/books?page=0&books_per_page=5";
     }
 
     @GetMapping("/{id}/edit")
