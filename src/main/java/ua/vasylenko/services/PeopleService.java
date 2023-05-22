@@ -54,8 +54,8 @@ public class PeopleService {
         Person person = getPerson(id);
         Hibernate.initialize(person.getBooks());
         person.getBooks().forEach(book -> {
-            long diffInMillis = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
-            if(diffInMillis > 60000)  // for test only 1 min
+            long diffInMillis = new Date().getTime() - book.getTakenAt().getTime();
+            if(diffInMillis > 864000000)  // 10 days
                 book.setExpired(true);
         });
         return person.getBooks();

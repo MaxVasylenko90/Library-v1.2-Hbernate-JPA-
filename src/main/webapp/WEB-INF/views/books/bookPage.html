@@ -30,9 +30,6 @@
     <form th:action="@{/books/{id}/release(id=${book.getId()})}" th:method="PATCH">
       <a th:href="@{/people/{id}(id=${owner.getId()})}" th:text="${owner.getName()}"></a>
       <span> has this book now.</span>
-
-        <span th:if="${book.isExpired()}" th:text="${owner.getName()} + 'did not return the book on time!!!!'" th:style="color:red"></span>
-
       <input type="submit" class="btn btn-primary" value="Release the book">
     </form>
   </div>

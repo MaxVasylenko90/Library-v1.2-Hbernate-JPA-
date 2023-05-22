@@ -49,16 +49,24 @@ public class BooksService {
 
     @Transactional
     public void assignPerson(int bookId, int personId) {
-        Book book = booksRepository.findById(bookId).orElse(null);
-        book.setPerson(peopleRepository.findById(personId).orElse(null));
-        book.setTakenAt(new Date());
+//        Book book = booksRepository.findById(bookId).orElse(null);
+//        book.setPerson(peopleRepository.findById(personId).orElse(null));
+//        book.setTakenAt(new Date());
+        booksRepository.findById(bookId).ifPresent(book -> {
+            book.setPerson(peopleRepository.findById(personId).orElse(null));
+            book.setTakenAt(new Date());
+        });
     }
 
     @Transactional
     public void releaseBook(int bookId) {
-        Book book = booksRepository.findById(bookId).orElse(null);
-        book.setPerson(null);
-        book.setTakenAt(null);
+//        Book book = booksRepository.findById(bookId).orElse(null);
+//        book.setPerson(null);
+//        book.setTakenAt(null);
+        booksRepository.findById(bookId).ifPresent(book -> {
+            book.setPerson(null);
+            book.setTakenAt(null);
+        });
     }
 
     @Transactional

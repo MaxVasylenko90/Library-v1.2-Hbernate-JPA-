@@ -32,7 +32,7 @@ public class Book {
     private Person person;
 
     @Column(name = "takenAt")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date takenAt;
 
     @Transient

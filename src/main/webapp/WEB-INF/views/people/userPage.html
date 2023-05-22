@@ -21,7 +21,7 @@
             <p th:each="book : ${books}">
                 <a th:href="@{/books/{id}(id=${book.getId()})}"
                    th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}">book</a>
-                <span th:if="${book.isExpired()}" th:text="'is expired!'" th:style="'color: red'">
+                <span th:if="${book.isExpired() == true}" th:text="'is expired!'" th:style="'color: red'">
                 </span>
             </p>
         </div>
