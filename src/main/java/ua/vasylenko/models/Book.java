@@ -28,10 +28,10 @@ public class Book {
     @Max(value = 2024, message = "Year must be less than 2024")
     private int year;
     @ManyToOne
-    @JoinColumn(name = "personId", referencedColumnName = "id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
-    @Column(name = "takenAt")
+    @Column(name = "taken_at")
     @Temporal(TemporalType.DATE)
     private Date takenAt;
 
